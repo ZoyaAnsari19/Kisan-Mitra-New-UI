@@ -324,6 +324,77 @@ ul { list-style: none; }
   padding-top: clamp(104px, 13vw, 148px);
   padding-bottom: clamp(50px, 7vw, 90px);
   overflow: hidden;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,0.55), transparent 55%),
+    radial-gradient(circle at 80% 10%, rgba(230,215,184,0.55), transparent 52%),
+    url("/static/img/bgImage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -40px -40px -40px -40px;
+  background-image: url("/static/img/india-outline.svg");
+  background-repeat: no-repeat;
+  background-size: min(1120px, 82vw);
+  background-position: 46% 44%;
+  opacity: 0.24;
+  pointer-events: none;
+  z-index: 0;
+  filter: sepia(0.85) saturate(1.35) hue-rotate(-10deg) contrast(1.08) brightness(0.98);
+}
+
+/* Theme-tinted watermark (preferred) */
+@supports ((-webkit-mask-image: url("")) or (mask-image: url(""))) {
+  .hero::before {
+    background-image:
+      radial-gradient(circle at 42% 42%, rgba(184,153,104,0.62), rgba(160,103,60,0.26) 58%, transparent 74%),
+      radial-gradient(circle at 72% 56%, rgba(31,58,46,0.22), transparent 62%);
+    -webkit-mask-image: url("/static/img/india-outline.svg");
+    mask-image: url("/static/img/india-outline.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: min(1120px, 82vw);
+    mask-size: min(1120px, 82vw);
+    -webkit-mask-position: 46% 44%;
+    mask-position: 46% 44%;
+    opacity: 0.42;
+    filter: none;
+    mix-blend-mode: multiply;
+    /* Adds a bit of separation from background */
+    filter: drop-shadow(0 10px 24px rgba(31,58,46,0.10));
+  }
+}
+
+/* Fallback for browsers without mask support: use the higher-contrast PNG */
+@supports not ((-webkit-mask-image: url("")) or (mask-image: url(""))) {
+  .hero::before {
+    background-image: url("/static/img/india-flag-map.png");
+    background-size: min(1120px, 82vw);
+    background-position: 46% 44%;
+    opacity: 0.22;
+    filter: saturate(0.85) contrast(1.08) brightness(1.02);
+    mix-blend-mode: multiply;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero::before {
+    background-size: min(980px, 110vw);
+    background-position: 52% 10%;
+    opacity: 0.18;
+  }
+  @supports ((-webkit-mask-image: url("")) or (mask-image: url(""))) {
+    .hero::before {
+      -webkit-mask-size: min(980px, 110vw);
+      mask-size: min(980px, 110vw);
+      -webkit-mask-position: 52% 10%;
+      mask-position: 52% 10%;
+      opacity: 0.34;
+    }
+  }
 }
 .hero-grid {
   display: grid;
@@ -370,18 +441,18 @@ ul { list-style: none; }
   display: flex;
   justify-content: center;
 }
-.hero-media > img {
+.hero-media > img,
+.hero-media .hero-team-photo {
   width: 100%;
-  max-width: 520px;
+  max-width: 680px;
   height: auto;
-  max-height: 520px;
+  aspect-ratio: 2304 / 1842;
   object-fit: contain;
   object-position: center;
-  border-radius: 28px;
-  border: 1px solid rgba(184,153,104,0.32);
-  box-shadow: 0 40px 80px -40px rgba(31,58,46,0.6);
-  background: var(--ivory-deep);
+  background: transparent;
   display: block;
+  border: 0;
+  box-shadow: none;
 }
 .float-chip {
   position: absolute;
@@ -411,26 +482,35 @@ ul { list-style: none; }
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
 }
-.stat { padding: 20px 18px; }
+.stat {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 .stat-num {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(1.3rem, 2.3vw, 1.85rem);
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
   color: var(--forest);
   line-height: 1;
 }
 
 /* Salary stat had inline font-size; keep it consistent */
 .hero-stats .stat:nth-child(3) .stat-num {
-  font-size: clamp(1.3rem, 2.3vw, 1.85rem) !important;
+  font-size: clamp(1.15rem, 2vw, 1.65rem) !important;
 }
 .stat-label {
   font-family: var(--mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.16em;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--copper);
-  margin-top: 8px;
+  margin-top: 6px;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 /* ============================================================
@@ -503,6 +583,88 @@ ul { list-style: none; }
   background:
     radial-gradient(circle at 15% 20%, rgba(255,255,255,0.45), transparent 40%),
     linear-gradient(140deg, var(--sand) 0%, var(--clay) 100%);
+}
+
+/* why join */
+.section-why-join {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.55), transparent 55%),
+    var(--ivory-deep);
+}
+.why-join-head {
+  max-width: 640px;
+  margin: 0 auto clamp(36px, 5vw, 52px);
+  text-align: center;
+}
+.why-join-head .display {
+  font-size: clamp(1.85rem, 4.6vw, 2.75rem);
+  margin: 18px 0 12px;
+}
+.why-join-head p {
+  font-size: 1.02rem;
+  color: var(--brown);
+}
+.why-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(122, 139, 107, 0.16);
+  border: 1px solid rgba(122, 139, 107, 0.28);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+.why-badge i { font-size: 0.72rem; color: var(--olive); }
+.why-join-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.why-join-card {
+  position: relative;
+  padding: 28px 26px 30px;
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid rgba(184, 153, 104, 0.14);
+  box-shadow: 0 18px 44px -30px rgba(31, 58, 46, 0.28);
+  overflow: hidden;
+  height: 100%;
+}
+.why-join-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), #d4b06a, var(--gold));
+}
+.why-join-ic {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(122, 139, 107, 0.16);
+  color: var(--forest);
+  font-size: 1.15rem;
+  margin-bottom: 18px;
+}
+.why-join-card h3 {
+  font-family: var(--serif);
+  font-size: 1.28rem;
+  font-weight: 600;
+  color: var(--forest);
+  margin-bottom: 10px;
+}
+.why-join-card p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--brown);
 }
 
 /* image + text split */
@@ -846,11 +1008,12 @@ ul { list-style: none; }
 }
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; }
-  .hero-media { order: -1; max-width: 440px; margin: 0 auto; }
+  .hero-media { order: -1; max-width: min(560px, 100%); margin: 0 auto; }
   .split { grid-template-columns: 1fr; }
   .split-media { order: -1; }
   .timeline { grid-template-columns: 1fr; }
   .roles-grid { grid-template-columns: 1fr; }
+  .why-join-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .wrap { padding: 0 18px; }
@@ -998,6 +1161,21 @@ ul { list-style: none; }
 /* role card image on top */
 .role-card.has-img { padding: 0; overflow: hidden; }
 .role-card.has-img .role-body { padding: 26px 30px 30px; }
+.role-card.has-img .km-img.role-img {
+  aspect-ratio: auto;
+  border-radius: 22px 22px 0 0;
+  border: 0;
+  box-shadow: none;
+  background: #fff;
+}
+.role-card.has-img .km-img.role-img::after { display: none; }
+.role-card.has-img .km-img.role-img img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center top;
+  filter: none;
+}
 
 /* salary + image split */
 .salary-feature {

@@ -34,6 +34,7 @@ const HEADER = /* html */ `
   <button id="menuClose" class="menu-close" aria-label="Menu band karein">&times;</button>
   <a href="#mission">Mission <i class="fas fa-arrow-right"></i></a>
   <a href="#partnership">Partnership <i class="fas fa-arrow-right"></i></a>
+  <a href="#why-join">Why Join <i class="fas fa-arrow-right"></i></a>
   <a href="#roadmap">Roadmap <i class="fas fa-arrow-right"></i></a>
   <a href="#roles">Posts (VLE/VLM/TLO/DLO) <i class="fas fa-arrow-right"></i></a>
   <a href="#vacancies">Vacancies <i class="fas fa-arrow-right"></i></a>
@@ -72,7 +73,7 @@ const HERO = /* html */ `
             <div class="stat-label">Exams</div>
           </div>
           <div class="stat glass">
-            <div class="stat-num" style="font-size:clamp(1.2rem,2.6vw,1.7rem)">&#8377;35k&ndash;80k</div>
+            <div class="stat-num">&#8377;35k&ndash;80k</div>
             <div class="stat-label">Salary / month</div>
           </div>
           <div class="stat glass">
@@ -82,7 +83,16 @@ const HERO = /* html */ `
         </div>
       </div>
       <div class="hero-media reveal">
-        <img src="/static/img/Team%20Photo.png" width="1024" height="1024" alt="Kisan Mitra team photo" loading="eager" fetchpriority="high" decoding="async" />
+        <img
+          class="hero-team-photo"
+          src="/static/img/teamPhoto.png"
+          width="2304"
+          height="1842"
+          alt="Kisan Mitra ecosystem team — VLE, VLM, DLO, TLO, CSE"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
       </div>
     </div>
   </div>
@@ -167,7 +177,39 @@ const PARTNERSHIP = /* html */ `
 </section>
 `;
 
-PAGE_PARTS.push(MISSION, PARTNERSHIP);
+const WHY_JOIN = /* html */ `
+<section class="section section-why-join" id="why-join">
+  <div class="wrap">
+    <div class="why-join-head reveal">
+      <span class="why-badge"><i class="fas fa-leaf"></i> Why Join</span>
+      <h2 class="display">Kyun ye mauka khaas hai?</h2>
+      <p>Teen wajah jo is naukri ko alag banati hain.</p>
+    </div>
+    <div class="why-join-grid">
+      <article class="why-join-card reveal">
+        <span class="why-join-accent" aria-hidden="true"></span>
+        <div class="why-join-ic"><i class="fas fa-award"></i></div>
+        <h3>Izzat ki naukri</h3>
+        <p>Government-style officer role, uniform, branded EV, ID card &mdash; gaon mein sammaan.</p>
+      </article>
+      <article class="why-join-card reveal">
+        <span class="why-join-accent" aria-hidden="true"></span>
+        <div class="why-join-ic"><i class="fas fa-car-side"></i></div>
+        <h3>Gaon mein rozgaar</h3>
+        <p>Apne ya paas ke gaon mein posting (local-first). Sheher migration band.</p>
+      </article>
+      <article class="why-join-card reveal">
+        <span class="why-join-accent" aria-hidden="true"></span>
+        <div class="why-join-ic"><i class="fas fa-indian-rupee-sign"></i></div>
+        <h3>Pakki salary + career</h3>
+        <p>&#8377;35K se &#8377;80K/month, performance bonus, aur clear promotion: VLE &rarr; VLM &rarr; TLO &rarr; DLO.</p>
+      </article>
+    </div>
+  </div>
+</section>
+`;
+
+PAGE_PARTS.push(MISSION, PARTNERSHIP, WHY_JOIN);
 
 const ROADMAP = /* html */ `
 <section class="section" id="roadmap">
@@ -215,7 +257,7 @@ const ROLES = /* html */ `
     </div>
     <div class="roles-grid">
       <article class="role-card glass has-img reveal">
-        <div class="km-img r-t ar-16-9"><img src="/static/img/role-vle.webp" width="800" height="450" alt="Yuva VLE khet me mitti ka sample lete hue" loading="lazy" decoding="async" /></div>
+        <div class="km-img r-t role-img"><img src="/static/img/VLE.png" width="1024" height="1024" alt="VLE (Village Level Executive) — official dress code" loading="lazy" decoding="async" /></div>
         <div class="role-body">
           <span class="role-tag">VLE</span>
           <h3>Village Level Executive</h3>
@@ -225,7 +267,7 @@ const ROLES = /* html */ `
         </div>
       </article>
       <article class="role-card glass has-img reveal">
-        <div class="km-img r-t ar-16-9"><img src="/static/img/role-vlm.webp" width="800" height="450" alt="VLM kisan se tablet par digital UPI payment lete hue" loading="lazy" decoding="async" /></div>
+        <div class="km-img r-t role-img"><img src="/static/img/VLM.png" width="1024" height="1024" alt="VLM (Village Level Manager) — official dress code" loading="lazy" decoding="async" /></div>
         <div class="role-body">
           <span class="role-tag">VLM</span>
           <h3>Village Level Manager</h3>
@@ -236,7 +278,7 @@ const ROLES = /* html */ `
         </div>
       </article>
       <article class="role-card glass has-img reveal">
-        <div class="km-img r-t ar-16-9"><img src="/static/img/role-tlo.webp" width="800" height="450" alt="TLO field workers ki training meeting lete hue" loading="lazy" decoding="async" /></div>
+        <div class="km-img r-t role-img"><img src="/static/img/TLO.png" width="1024" height="1024" alt="TLO (Tehsil Leader Officer) — official dress code" loading="lazy" decoding="async" /></div>
         <div class="role-body">
           <span class="role-tag">TLO</span>
           <h3>Tehsil Leader Officer</h3>
@@ -246,7 +288,7 @@ const ROLES = /* html */ `
         </div>
       </article>
       <article class="role-card glass has-img reveal">
-        <div class="km-img r-t ar-16-9"><img src="/static/img/role-dlo.webp" width="800" height="450" alt="DLO desk par dashboard aur map review karte hue" loading="lazy" decoding="async" /></div>
+        <div class="km-img r-t role-img"><img src="/static/img/DLO.png" width="1024" height="1024" alt="DLO (District Level Officer) — official dress code" loading="lazy" decoding="async" /></div>
         <div class="role-body">
           <span class="role-tag">DLO</span>
           <h3>Division Leader Officer</h3>
