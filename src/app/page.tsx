@@ -82,11 +82,7 @@ const HERO = /* html */ `
         </div>
       </div>
       <div class="hero-media reveal">
-        <div class="km-img r-3xl ar-4-5">
-          <img src="/static/img/hero-officer.webp" width="900" height="1125" alt="Gaon ka yuva Kisan Mitra officer khet me confident khada hai" loading="eager" fetchpriority="high" decoding="async" />
-          <span class="img-chip tl"><i class="fas fa-location-dot"></i> Local posting · apne hi gaon me</span>
-          <span class="img-chip br hide-xs"><i class="fas fa-shield-halved"></i> Computer-based · AI-proctored</span>
-        </div>
+        <img src="/static/img/Team%20Photo.png" width="1024" height="1024" alt="Kisan Mitra team photo" loading="eager" fetchpriority="high" decoding="async" />
       </div>
     </div>
   </div>
